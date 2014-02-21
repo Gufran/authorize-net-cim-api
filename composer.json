@@ -1,0 +1,30 @@
+{
+    "name": "gufran/laravel-authorize-net-cim",
+    "description": "laravel package for integrating authorize.net cim",
+    "minimum-stability": "stable",
+    "license": "MIT",
+    "keywords": [
+        "payment",
+        "authorize.net",
+        "laravel",
+        "cim"
+    ],
+    "homepage": "http://www.github.com/Gufran/laravel-authorize-net-cim",
+    "authors": [
+        {
+            "name": "Mohammad Gufran",
+            "email": "contact@gufran.me",
+            "homepage": "http://www.gufran.me"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.2",
+        "lib-curl": "*",
+        "ext-SimpleXml": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Gufran\\": "src/"
+        }
+    }
+}
