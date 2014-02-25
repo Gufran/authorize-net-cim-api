@@ -2,7 +2,7 @@
 
 use Gufran\AuthNet\Contracts\MethodInterface;
 use Gufran\AuthNet\Entities\Configuration;
-use Gufran\AuthNet\Exceptions\InvalidRequestException;
+use Guzzle\Http\Client;
 
 class Request {
 
@@ -12,17 +12,14 @@ class Request {
 
     private $config;
 
-    public function __construct(Configuration $config)
+    private $engine;
+
+    public function __construct(Configuration $config, Client $client)
     {
         $this->config = $config;
 
         $url = $this->config->isProduction() ? self::PRODUCTION_URL : self::DEV_URL;
-        $this->engine = curl_init($url);
-    }
-
-    public function __destruct()
-    {
-        curl_close($this->engine);
+        $this->engine = $client->post($url);
     }
 
     public function make(MethodInterface $method)
@@ -36,19 +33,16 @@ class Request {
         return $results;
     }
 
-    public function makeRequest($payload)
+    private function makeRequest($payload)
     {
-        curl_setopt($this->engine, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($this->engine, CURLOPT_HTTPHEADER, array('Content-Type: text/xml'));
-        curl_setopt($this->engine, CURLOPT_POSTFIELDS, $payload);
-        curl_setopt($this->engine, CURLOPT_SSL_VERIFYPEER, 1);
-        $response = curl_exec($this->engine);
+        /** @noinspection PhpUndefinedMethodInspection */
+        $response = $this->engine
+                        ->setBody($payload)
+                        ->send();
 
-        if ($response === false)
-        {
-            throw new InvalidRequestException('An error occurred while making API request to Authorize Net - ' . curl_error($this->engine));
-        }
+        $result = str_replace('xmlns="AnetApi/xml/v1/schema/AnetApiSchema.xsd"', '', $response->getBody());
 
-        return new Response(simplexml_load_string($response));
+        /** @noinspection PhpUndefinedMethodInspection */
+        return new Response(simplexml_load_string($result));
     }
 } 
