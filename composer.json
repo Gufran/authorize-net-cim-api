@@ -20,7 +20,11 @@
     "require": {
         "php": ">=5.3.2",
         "lib-curl": "*",
-        "ext-SimpleXml": "*"
+        "ext-SimpleXml": "*",
+        "guzzle/guzzle": "~3.7"
+    },
+    "require-dev": {
+        "mockery/mockery": "0.9.*@dev"
     },
     "autoload": {
         "psr-4": {
