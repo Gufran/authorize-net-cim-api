@@ -1,5 +1,6 @@
 <?php namespace Gufran\AuthNet\Entities\RequestMethods;
 
+use ErrorException;
 use Gufran\AuthNet\Contracts\MethodInterface;
 use Gufran\AuthNet\Contracts\ObjectInterface;
 use Gufran\AuthNet\Exceptions\InvalidDataObjectException;
@@ -87,10 +88,14 @@ abstract class BaseMethod implements MethodInterface {
 
     /**
      * get the formatted xml data
+     * @throws ErrorException
      * @return string
      */
     public function getFormattedXml()
     {
+        if($this->ready == false)
+            throw new ErrorException('No authentication credentials available. XML Payload requested without credentials');
+
         return $this->xmlObject->toXml();
     }
 
@@ -133,7 +138,8 @@ abstract class BaseMethod implements MethodInterface {
                 }
             } elseif ($value instanceof ObjectInterface) {
                 // If value is an Object of RequestObject we will append it to the xml
-                $this->arrayToXml($value->getObjectData(), $xmlObject);
+                $xmlObject->addChild($param);
+                $this->arrayToXml($value->getObjectData(), $xmlObject->$param);
             } else {
                 $xmlObject->$param = $value;
             }
