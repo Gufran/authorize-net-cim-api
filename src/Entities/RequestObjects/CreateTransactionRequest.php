@@ -13,13 +13,13 @@ class CreateTransactionRequest extends BaseObject {
         'lineItemsItemId' => 'profileTransCaptureOnly.lineItems.itemId',
         'lineItemsTaxable' => 'profileTransCaptureOnly.lineItems.taxable',
         'orderDescription' => 'profileTransCaptureOnly.order.description',
-        'customerProfileId' => 'profileTransCaptureOnly.customerProfileId',
+        'customerProfile' => 'profileTransCaptureOnly.customerProfileId',
         'lineItemsQuantity' => 'profileTransCaptureOnly.lineItems.quantity',
         'orderInvoiceNumber' => 'profileTransCaptureOnly.order.invoiceNumber',
         'lineItemsUnitPrice' => 'profileTransCaptureOnly.lineItems.unitPrice',
         'lineItemsDescription' => 'profileTransCaptureOnly.lineItems.description',
-        'customerPaymentProfileId' => 'profileTransCaptureOnly.customerPaymentProfileId',
-        'orderPurchaseOrderNumber' => 'profileTransCaptureOnly.order.purchaseOrderNumber'
+        'paymentProfile' => 'profileTransCaptureOnly.customerPaymentProfileId',
+        'orderNumber' => 'profileTransCaptureOnly.order.purchaseOrderNumber'
     );
 
     /**
