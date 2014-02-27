@@ -14,6 +14,8 @@ class RequestTest extends PHPUnit_Framework_TestCase {
 
     public function setUp()
     {
+        parent::setUp();
+
         $this->config = Mockery::mock('Gufran\AuthNet\Entities\Configuration');
         $this->guzzle = Mockery::mock('Guzzle\Http\Client');
 
@@ -80,11 +82,15 @@ class RequestTest extends PHPUnit_Framework_TestCase {
 
         $this->guzzle->shouldReceive('setBody')
             ->with($requestPayload)
-            ->andReturn(Mockery::mock(array('send' => Mockery::mock(array('xml' => new SimpleXMLElement($responseXml))))));
+            ->andReturn(Mockery::mock(array('send' => Mockery::mock(array('getBody' => $responseXml)))));
 
         $result = $this->service->make($this->method);
 
         $this->assertInstanceOf('Gufran\AuthNet\Services\Response', $result);
-        $this->assertTrue($result->isOk());
+    }
+
+    public function tearDown()
+    {
+        Mockery::close();
     }
 } 
