@@ -24,7 +24,7 @@ class Configuration {
      */
     public function isProduction()
     {
-        return $this->config['production'] == true;
+        return $this->getMode() == 'production';
     }
 
     /**
@@ -32,7 +32,7 @@ class Configuration {
      */
     public function isDevelopment()
     {
-        return $this->config['development'] == true;
+        return $this->getMode() == 'development';
     }
 
     /**
