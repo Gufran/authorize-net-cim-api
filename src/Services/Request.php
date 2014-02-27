@@ -14,8 +14,10 @@ class Request {
 
     private $engine;
 
-    public function __construct(Configuration $config, Client $client)
+    public function __construct(Configuration $config, Client $client = null)
     {
+        if(is_null($client)) $client = new Client();
+
         $this->config = $config;
 
         $url = $this->config->isProduction() ? self::PRODUCTION_URL : self::DEV_URL;
