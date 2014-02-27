@@ -1,5 +1,5 @@
 {
-    "name": "gufran/laravel-authorize-net-cim",
+    "name": "gufran/authorize-net-cim-api",
     "description": "laravel package for integrating authorize.net cim",
     "minimum-stability": "stable",
     "license": "MIT",
@@ -9,7 +9,7 @@
         "laravel",
         "cim"
     ],
-    "homepage": "http://www.github.com/Gufran/laravel-authorize-net-cim",
+    "homepage": "http://www.github.com/Gufran/authorize-net-cim-api",
     "authors": [
         {
             "name": "Mohammad Gufran",
