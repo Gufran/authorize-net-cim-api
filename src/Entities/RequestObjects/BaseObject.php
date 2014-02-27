@@ -49,7 +49,7 @@ abstract class BaseObject implements ObjectInterface {
     protected function setData($key, $value)
     {
         $keys = explode('.', $key);
-        $array = $this->data;
+        $array = &$this->data;
 
         while (count($keys) > 1)
         {
@@ -60,12 +60,10 @@ abstract class BaseObject implements ObjectInterface {
                 $array[$key] = array();
             }
 
-            $array =& $array[$key];
+            $array = &$array[$key];
         }
 
         $array[array_shift($keys)] = $value;
-
-        $this->data = $array;
     }
 
     public function __call($name, $arguments)
