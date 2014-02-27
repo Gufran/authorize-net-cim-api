@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Facade;
 
 class AuthNet Extends Facade {
 
-    public function getFacadeAccessor()
+    public static function getFacadeAccessor()
     {
         return 'authNetManager';
     }
