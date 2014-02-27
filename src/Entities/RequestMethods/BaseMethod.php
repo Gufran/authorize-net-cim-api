@@ -96,7 +96,7 @@ abstract class BaseMethod implements MethodInterface {
         if($this->ready == false)
             throw new ErrorException('No authentication credentials available. XML Payload requested without credentials');
 
-        return $this->xmlObject->toXml();
+        return $this->xmlObject->asXML();
     }
 
     /**
@@ -158,7 +158,7 @@ abstract class BaseMethod implements MethodInterface {
             '<' . $method . ' xmlns="' . $this->xmlNamespace . '">'.
             '</' . $method . '>';
 
-        return simplexml_load_string($xml);
+        return @simplexml_load_string($xml);
     }
 
     /**
