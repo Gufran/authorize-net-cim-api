@@ -1,7 +1,7 @@
 <?php namespace Gufran\AuthNet\Entities\RequestObjects;
 
 
-class HostedProfilePage extends BaseObject {
+class GetHostedProfilePage extends BaseObject {
 
     protected $methods = array(
         'customerProfileId' => 'customerProfileId',
