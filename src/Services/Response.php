@@ -18,7 +18,7 @@ class Response {
     /**
      * @return bool
      */
-    public function isOk()
+    public function isValid()
     {
         return ((string)($this->result->messages->resultCode) == 'Ok');
     }
@@ -28,7 +28,7 @@ class Response {
      */
     public function isInvalid()
     {
-        return (! $this->isOk());
+        return (! $this->isValid());
     }
 
     /**
