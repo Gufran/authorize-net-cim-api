@@ -7,7 +7,7 @@ If you are using Laravel its pretty easy to use the library:
 
 require in your composer file
 
-    "gufran/laravel-authorize-net-cim": "0.1"
+    "gufran/authorize-net-cim-api": "0.1"
 
 Add:
     
