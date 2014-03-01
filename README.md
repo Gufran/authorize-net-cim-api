@@ -7,7 +7,7 @@ If you are using Laravel its pretty easy to use the library:
 
 require in your composer file
 
-    "gufran/laravel-authorize-net-cim": "0.1"
+    "gufran/laravel-authorize-net-cim": "0.1.1"
 
 Add:
     
@@ -23,10 +23,10 @@ to facades array and publish the configuration:
 
 and add valid options in configuration file. The configuration file should be located at `app/config/packages/gufran/authorize-net-cim-api`
 
-Now you can use the Facade `AuthNet` to call methods:
+Now you can use the Facade `Authorize` to call methods:
 You call a valid method on facade and it will return an object of api delegate which allows you to fluently set all options, here is an example:
 
-    $api = AuthNet::createCustomerProfile()
+    $api = Authorize::createCustomerProfile()
             ->setFirstName('gufran')
             ->setCity('someCity')
             ->setCardNumber('1234567890123456');
