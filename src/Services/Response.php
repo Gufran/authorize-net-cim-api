@@ -48,6 +48,29 @@ class Response {
     }
 
     /**
+     * Get payment profiles associated with the profile
+     *
+     * @return array
+     */
+    public function getPaymentProfiles()
+    {
+        $paymentProfileIds = array();
+        $profileId = null;
+        $cardNumber = null;
+
+        foreach($this->result->paymentProfiles as $paymentProfile) {
+            $profileId = (string) $paymentProfile->customerPaymentProfileId;
+            $cardNumber = (string)$paymentProfile->creditCard->cardNumber;
+
+            if(empty($profileId) or empty($cardNumber)) continue;
+
+            $paymentProfileIds[$profileId] = $cardNumber;
+        }
+
+        return $paymentProfileIds;
+    }
+
+    /**
      * a dot notation string to fetch element
      *
      * @param      $key
